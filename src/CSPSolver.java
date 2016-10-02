@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CSPSolver {
+	
     public static void main(String[] args) throws IOException {
     	ArrayList<String> inputArr = new ArrayList<String>();
     	File inputFile = new File(args[0]);
