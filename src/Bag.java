@@ -30,4 +30,17 @@ public class Bag {
 	public ArrayList<Item> getItems(){
 		return this.items;
 	}
+	
+	public void addItem(Item i){
+	    this.items.add(i);
+	}
+	
+	public void removeItem(Item i){
+	    for(int j = 0; j < this.items.size(); j++){
+	        if(this.items.get(j).getName() == i.getName()){
+	            this.items.remove(i);
+	            return;
+	        }
+	    }
+	}
 }
