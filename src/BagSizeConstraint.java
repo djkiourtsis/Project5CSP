@@ -21,4 +21,9 @@ public class BagSizeConstraint extends Constraint {
         return true;
     }
 
+    @Override
+    public boolean isSatisfiable(ArrayList<Bag> bags) {
+        return isSatisfied(bags);
+    }
+
 }

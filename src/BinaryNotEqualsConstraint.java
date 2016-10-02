@@ -9,10 +9,18 @@ public class BinaryNotEqualsConstraint extends Constraint {
 
     @Override
     public boolean isSatisfied(ArrayList<Bag> bags) {
+        if(this.items.get(0).getBag() == null || this.items.get(1).getBag() == null){
+            return true;
+        }
         if(this.items.get(0).getBag().getName()==this.items.get(1).getBag().getName()){
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean isSatisfiable(ArrayList<Bag> bags) {
+        return isSatisfied(bags);
     }
 
 }

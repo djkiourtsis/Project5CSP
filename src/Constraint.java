@@ -26,5 +26,6 @@ public abstract class Constraint {
         this.bags = bags;
     }
     
-    public abstract boolean isSatisfied(ArrayList<Bag> bags);
+    public abstract boolean isSatisfied(ArrayList<Bag> bags); // Returns true if the constraint is satisfied.
+    public abstract boolean isSatisfiable(ArrayList<Bag> bags); // Returns true if the constraint is still satisfiable.
 }

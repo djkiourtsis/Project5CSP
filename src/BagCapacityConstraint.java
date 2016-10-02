@@ -21,4 +21,14 @@ public class BagCapacityConstraint extends Constraint {
         return true;
     }
 
+    @Override
+    public boolean isSatisfiable(ArrayList<Bag> bags) {
+        for(int i = 0; i < bags.size(); i++){
+            if(bags.get(i).getItems().size() > this.maxLimit){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

@@ -9,12 +9,20 @@ public class UnaryExclusiveConstraint extends Constraint {
 
     @Override
     public boolean isSatisfied(ArrayList<Bag> bags) {
+        if(this.items.get(0).getBag()==null){
+            return true;
+        }
         for(int i = 0; i < this.bags.size(); i++){
             if(this.bags.get(i).getName() == this.items.get(0).getBag().getName()){
                 return false;
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean isSatisfiable(ArrayList<Bag> bags) {
+        return isSatisfied(bags);
     }
 
 }

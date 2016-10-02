@@ -9,7 +9,21 @@ public class BinaryEqualsConstraint extends Constraint {
 
     @Override
     public boolean isSatisfied(ArrayList<Bag> bags) {
-        if(this.items.get(0).getBag().getName()==this.items.get(1).getBag().getName()){
+        if(this.items.get(0).getBag() == null || this.items.get(1).getBag() == null){
+            return false;
+        }
+        else if(this.items.get(0).getBag().getName()==this.items.get(1).getBag().getName()){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isSatisfiable(ArrayList<Bag> bags) {
+        if(this.items.get(0).getBag() == null || this.items.get(1).getBag() == null){
+            return true;
+        }
+        else if(this.items.get(0).getBag().getName()==this.items.get(1).getBag().getName()){
             return true;
         }
         return false;
