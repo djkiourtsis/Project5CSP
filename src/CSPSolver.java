@@ -14,6 +14,7 @@ public class CSPSolver {
 		Scanner input = new Scanner(inputFile);
 		String temp = input.nextLine();
 		temp = input.nextLine();
+		
 		while(!temp.startsWith("#")){
 			String[] temp2 = temp.split("\\s+");
 			Item tempI = new Item(temp2[0], Integer.valueOf(temp2[1]), null);
@@ -32,6 +33,7 @@ public class CSPSolver {
 			String[] temp2 = temp.split("\\s+");
 			BagCapacityConstraint tempBCC = new BagCapacityConstraint(null, null, Integer.valueOf(temp2[0]), Integer.valueOf(temp2[1]));
 			constraints.add(tempBCC);
+			temp = input.nextLine();
 		}
 		temp = input.nextLine();
 		while(!temp.startsWith("#")){
@@ -50,6 +52,7 @@ public class CSPSolver {
 			}
 			UnaryInclusiveConstraint tempUIC = new UnaryInclusiveConstraint(itemC, bagC);
 			constraints.add(tempUIC);
+			temp = input.nextLine();
 		}
 		temp = input.nextLine();
 		while(!temp.startsWith("#")){
@@ -68,6 +71,7 @@ public class CSPSolver {
 			}
 			UnaryExclusiveConstraint tempW = new UnaryExclusiveConstraint(itemC, bagC);
 			constraints.add(tempW);
+			temp = input.nextLine();
 		}
 		temp = input.nextLine();
 		while(!temp.startsWith("#")){
@@ -86,6 +90,7 @@ public class CSPSolver {
 			}
 			BinaryEqualsConstraint tempW = new BinaryEqualsConstraint(itemC, bagC);
 			constraints.add(tempW);
+			temp = input.nextLine();
 		}
 		temp = input.nextLine();
 		while(!temp.startsWith("#")){
@@ -104,12 +109,14 @@ public class CSPSolver {
 			}
 			BinaryNotEqualsConstraint tempW = new BinaryNotEqualsConstraint(itemC, bagC);
 			constraints.add(tempW);
+			temp = input.nextLine();
 		}
 		temp = input.nextLine();
-		while(!temp.startsWith("#")){
+		while(!temp.startsWith("#") && input.hasNextLine()){
 			String[] temp2 = temp.split("\\s+");
 			ArrayList<Item> itemC = new ArrayList<Item>();
 			ArrayList<Bag> bagC = new ArrayList<Bag>();
+			System.out.println(temp2);
 			for(int i = 0; i < items.size(); i++){
 				if(temp2[0].equals(items.get(i).name)){
 					itemC.add(items.get(i));
@@ -122,11 +129,32 @@ public class CSPSolver {
 			}
 			MutualInclusiveConstraint tempW = new MutualInclusiveConstraint(itemC, bagC);
 			constraints.add(tempW);
+			temp = input.nextLine();
 		}
+		for(int i = 0; i < bags.size(); i++){
+			System.out.println(bags.get(i));
+			}
 		BagSizeConstraint BSC = new BagSizeConstraint(null, null);
 		constraints.add(BSC);
 		input.close();
 		
+	}
+	
+	public void writeOutPut(ArrayList<Bag> bags){
+		for(int i = 0; i < bags.size(); i++){
+			int iWeight = 0;
+			for(int j = 0; j < bags.get(i).getItems().size(); j++){
+				iWeight += bags.get(i).getItems().get(j).getWeight();
+			}
+			int wCap = bags.get(i).getCapacity() - iWeight;
+			System.out.print(bags.get(i));
+			System.out.println(bags.get(i).getItems());
+			System.out.format("number of items: %d", bags.get(i).getItems().size());
+			System.out.format("total weight: %d", bags.get(i).getItems().size());
+			System.out.format("total weight: %d/%d", iWeight, bags.get(i).getCapacity());
+			System.out.format("wasted capacity: %d", wCap);
+			
+	}
 	}
 
 }
