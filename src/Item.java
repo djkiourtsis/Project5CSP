@@ -13,7 +13,9 @@ public class Item {
 //Function to put an item into a bag	
 	public void putInBag(Bag bag){
 		bagIn = bag;
-		bag.addItem(this);
+		if(bag != null){
+		    bag.addItem(this);
+		}
 	}
 	
 	public String getName(){
