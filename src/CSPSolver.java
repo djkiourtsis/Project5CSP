@@ -83,9 +83,9 @@ public class CSPSolver {
 					itemC.add(items.get(i));
 				}
 			}
-			for(int i = 0; i < bags.size(); i++){
-				if(temp2[1].equals(bags.get(i).name)){
-					bagC.add(bags.get(i));
+			for(int i = 0; i < items.size(); i++){
+				if(temp2[1].equals(items.get(i).name)){
+					itemC.add(items.get(i));
 				}
 			}
 			BinaryEqualsConstraint tempW = new BinaryEqualsConstraint(itemC, bagC);
@@ -102,9 +102,9 @@ public class CSPSolver {
 					itemC.add(items.get(i));
 				}
 			}
-			for(int i = 0; i < bags.size(); i++){
-				if(temp2[1].equals(bags.get(i).name)){
-					bagC.add(bags.get(i));
+			for(int i = 0; i < items.size(); i++){
+				if(temp2[1].equals(items.get(i).name)){
+					itemC.add(items.get(i));
 				}
 			}
 			BinaryNotEqualsConstraint tempW = new BinaryNotEqualsConstraint(itemC, bagC);
@@ -132,9 +132,7 @@ public class CSPSolver {
 			constraints.add(tempW);
 			temp = input.nextLine();
 		}
-		//  for(int i = 0; i < bags.size(); i++){
-		//      System.out.println(bags.get(i));
-		//  }
+
 		BagSizeConstraint BSC = new BagSizeConstraint(null, null);
 		constraints.add(BSC);
 		input.close();
