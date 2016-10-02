@@ -19,10 +19,7 @@ public class BacktrackingSolver {
             if(!constraints.get(i).isSatisfiable(bags)){
                 return false; // State can't be used to solve problem.
             }
-            satisfied = constraints.get(i).isSatisfied(bags);
-            if(!satisfied){
-                break;
-            }
+            satisfied = satisfied && constraints.get(i).isSatisfied(bags);
         }
         if(satisfied){ // All constraints satisfied.  Solution is found.
             return true;
@@ -34,9 +31,11 @@ public class BacktrackingSolver {
         ArrayList<Bag> values = valuesToSetTo(itemToModify);
         for(int i = 0; i < values.size(); i++){
             itemToModify.putInBag(values.get(i));
+            //System.out.println("Putting item: " + itemToModify.getName() + " in bag: " + values.get(i).getName());
             if(this.findSolution()){
                 return true;
             }
+            //System.out.println("Removing item: " + itemToModify.getName() + " from bag: " + values.get(i).getName());
             itemToModify.putInBag(null);
             values.get(i).removeItem(itemToModify);
         }

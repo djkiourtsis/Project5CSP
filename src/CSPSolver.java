@@ -45,10 +45,12 @@ public class CSPSolver {
 					itemC.add(items.get(i));
 				}
 			}
-			for(int i = 0; i < bags.size(); i++){
-				if(temp2[1].equals(bags.get(i).name)){
-					bagC.add(bags.get(i));
-				}
+			for(int c = 1; c < temp2.length; c++){
+			    for(int i = 0; i < bags.size(); i++){
+			        if(temp2[c].equals(bags.get(i).name)){
+			            bagC.add(bags.get(i));
+			        }
+			    }
 			}
 			UnaryInclusiveConstraint tempUIC = new UnaryInclusiveConstraint(itemC, bagC);
 			constraints.add(tempUIC);
@@ -64,11 +66,13 @@ public class CSPSolver {
 					itemC.add(items.get(i));
 				}
 			}
-			for(int i = 0; i < bags.size(); i++){
-				if(temp2[1].equals(bags.get(i).name)){
-					bagC.add(bags.get(i));
-				}
-			}
+			for(int c = 1; c < temp2.length; c++){
+                for(int i = 0; i < bags.size(); i++){
+                    if(temp2[c].equals(bags.get(i).name)){
+                        bagC.add(bags.get(i));
+                    }
+                }
+            }
 			UnaryExclusiveConstraint tempW = new UnaryExclusiveConstraint(itemC, bagC);
 			constraints.add(tempW);
 			temp = input.nextLine();
@@ -114,31 +118,50 @@ public class CSPSolver {
 		if(input.hasNextLine()){
 			temp = input.nextLine();
 		}
-		while(!temp.startsWith("#") && input.hasNextLine()){
+		while(!temp.startsWith("#")){
 			String[] temp2 = temp.split("\\s+");
 			ArrayList<Item> itemC = new ArrayList<Item>();
 			ArrayList<Bag> bagC = new ArrayList<Bag>();
-			for(int i = 0; i < items.size(); i++){
-				if(temp2[0].equals(items.get(i).name)){
-					itemC.add(items.get(i));
-				}
-			}
-			for(int i = 0; i < bags.size(); i++){
-				if(temp2[1].equals(bags.get(i).name)){
-					bagC.add(bags.get(i));
-				}
-			}
+			for(int c = 0; c < 2; c++){
+                for(int i = 0; i < items.size(); i++){
+                    if(temp2[c].equals(items.get(i).name)){
+                        itemC.add(items.get(i));
+                    }
+                }
+            }
+			for(int c = 2; c < temp2.length; c++){
+                for(int i = 0; i < bags.size(); i++){
+                    if(temp2[c].equals(bags.get(i).name)){
+                        bagC.add(bags.get(i));
+                    }
+                }
+            }
 			MutualInclusiveConstraint tempW = new MutualInclusiveConstraint(itemC, bagC);
 			constraints.add(tempW);
+			if(!input.hasNextLine()){
+			    break;
+			}
 			temp = input.nextLine();
 		}
 
 		BagSizeConstraint BSC = new BagSizeConstraint(null, null);
 		constraints.add(BSC);
+		AllItemsConstraint AIC = new AllItemsConstraint(items, null);
+		constraints.add(AIC);
 		input.close();
 
+		for(int i = 0; i < items.size(); i++){
+		    //System.out.println(items.get(i).getName() + " " + items.get(i).getWeight());
+		}
+		for(int i = 0; i < bags.size(); i++){
+            //System.out.println(bags.get(i).getName() + " " + bags.get(i).getCapacity());
+        }
+		for(int i = 0; i < constraints.size(); i++){
+            //System.out.println(constraints.get(i));
+        }
+		
 		BacktrackingSolver bts = new BacktrackingSolver(bags, items, constraints);
-		bts.findSolution();
+		System.out.println(bts.findSolution());
 		writeOutPut(bags);
 	}
 
