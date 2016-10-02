@@ -27,14 +27,32 @@ public class BacktrackingSolver {
         if(satisfied){ // All constraints satisfied.  Solution is found.
             return true;
         }
-        return false; // Recursion stuff here.
+        Item itemToModify = itemToModifyNext();
+        if(itemToModify == null){
+            return false; // No items left
+        }
+        ArrayList<Bag> values = valuesToSetTo(itemToModify);
+        for(int i = 0; i < values.size(); i++){
+            itemToModify.putInBag(values.get(i));
+            if(this.findSolution()){
+                return true;
+            }
+            itemToModify.putInBag(null);
+            values.get(i).removeItem(itemToModify);
+        }
+        return false; // No more valid values for item.
     }
     
     public Item itemToModifyNext(){
-        return null;
+        for(int i = 0; i < this.items.size(); i++){ // Find first non-set item/variable
+            if(this.items.get(i).getBag() == null){
+                return this.items.get(i);
+            }
+        }
+        return null; // No items left
     }
     
     public ArrayList<Bag> valuesToSetTo(Item i){
-        return null;
+        return bags;
     }
 }

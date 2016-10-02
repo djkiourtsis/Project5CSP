@@ -139,11 +139,14 @@ public class CSPSolver {
 		constraints.add(BSC);
 		input.close();
 
+		BacktrackingSolver bts = new BacktrackingSolver(bags, items, constraints);
+		bts.findSolution();
 		writeOutPut(bags);
 	}
 
 	public static void writeOutPut(ArrayList<Bag> bags){
 		for(int i = 0; i < bags.size(); i++){
+		    System.out.println();
 			int iWeight = 0;
 			for(int j = 0; j < bags.get(i).getItems().size(); j++){
 				iWeight += bags.get(i).getItems().get(j).getWeight();
@@ -151,7 +154,7 @@ public class CSPSolver {
 			int wCap = bags.get(i).getCapacity() - iWeight;
 			System.out.print(bags.get(i).getName());
 			for(int k = 0; k < bags.get(i).getItems().size(); k++){
-				System.out.println(bags.get(i).getItems().get(k).getName());
+				System.out.print(" " + bags.get(i).getItems().get(k).getName());
 			}
 			System.out.format("\nnumber of items: %d\n", bags.get(i).getItems().size());
 			System.out.format("total weight: %d\n", bags.get(i).getItems().size());
