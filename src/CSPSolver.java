@@ -163,9 +163,10 @@ public class CSPSolver {
 		BacktrackingSolver bts = null;
 		bts = new BacktrackingSolver(bags, items, constraints);
 		//bts = new BackTrackingWithHeuristic(bags, items, constraints);
+		startTime = System.currentTimeMillis();
 		System.out.println("Solution possible:"+ " " + bts.findSolution());
-		writeOutPut(bags);
 		long endTime = System.currentTimeMillis();
+		writeOutPut(bags);
 		long timeSpent = endTime - startTime;
 		System.out.format("\n%d milliseconds",timeSpent);
 	}
