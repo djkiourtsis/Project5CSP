@@ -9,9 +9,18 @@ public class CSPSolver {
 	public static void main(String[] args) throws IOException {
 		long startTime = System.currentTimeMillis();
 		bagMaxCapacity=0;
+		int algorithmToRun = 0;
 		ArrayList<Bag> bags = new ArrayList<Bag>();
 		ArrayList<Item> items = new ArrayList<Item>();
 		ArrayList<Constraint> constraints = new ArrayList<Constraint>();
+		if(args.length < 1){
+		    System.out.println("Usage: java CSPSolver <filename> <optional: 1, 2, or 3>");
+		    System.out.println("Optional argument: 1-BackTracking  2-BackTrackingWithHeuristic  3-ForwardChecking");
+		    System.exit(0);
+		}
+		if(args.length > 1){
+		    algorithmToRun = Integer.valueOf(args[1]);
+		}
 
 		File inputFile = new File(args[0]);
 		Scanner input = new Scanner(inputFile);
@@ -154,18 +163,16 @@ public class CSPSolver {
 		constraints.add(AIC);
 		input.close();
 
-		for(int i = 0; i < items.size(); i++){
-		    //System.out.println(items.get(i).getName() + " " + items.get(i).getWeight());
-		}
-		for(int i = 0; i < bags.size(); i++){
-            //System.out.println(bags.get(i).getName() + " " + bags.get(i).getCapacity());
-        }
-		for(int i = 0; i < constraints.size(); i++){
-            //System.out.println(constraints.get(i));
-        }
 		BacktrackingSolver bts = null;
-		//bts = new BacktrackingSolver(bags, items, constraints);
-		//bts = new BackTrackingWithHeuristic(bags, items, constraints);
+		if(algorithmToRun==2){
+		    bts = new BacktrackingSolver(bags, items, constraints);
+		}
+		else if(algorithmToRun==3){
+		    bts = new ForwardCheckingSolver(bags, items, constraints);
+		}
+		else{
+		    bts = new BacktrackingSolver(bags, items, constraints);
+		}
 		bts = new ForwardCheckingSolver(bags, items, constraints);
 		startTime = System.currentTimeMillis();
 		System.out.println("Solution possible:"+ " " + bts.findSolution());
