@@ -9,7 +9,7 @@ public class BagSizeConstraint extends Constraint {
         this.bags = new ArrayList<Bag>();
     }
 
-    @Override
+    //Determines the satisfiability of the bag based on the capacity of the bag.
     public boolean isSatisfied(ArrayList<Bag> bags) {
         for(int i = 0; i < bags.size(); i++){
             int bagSize = 0;
@@ -23,7 +23,7 @@ public class BagSizeConstraint extends Constraint {
         return true;
     }
 
-    @Override
+    //Checks to see if the capacity of the bag is still not met.
     public boolean isSatisfiable(ArrayList<Bag> bags) {
         for(int i = 0; i < bags.size(); i++){
             int bagSize = 0;

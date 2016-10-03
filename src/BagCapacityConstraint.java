@@ -11,7 +11,7 @@ public class BagCapacityConstraint extends Constraint {
         this.maxLimit = max;
     }
 
-    @Override
+    //Determines satisfiability based on the provided constraints on the bag.
     public boolean isSatisfied(ArrayList<Bag> bags) {
         for(int i = 0; i < bags.size(); i++){
             if(bags.get(i).getItems().size() < this.minLimit || bags.get(i).getItems().size() > this.maxLimit){
@@ -21,7 +21,7 @@ public class BagCapacityConstraint extends Constraint {
         return true;
     }
 
-    @Override
+    //Determines whether the bag still has capacity for more items.
     public boolean isSatisfiable(ArrayList<Bag> bags) {
         for(int i = 0; i < bags.size(); i++){
             if(bags.get(i).getItems().size() > this.maxLimit){
