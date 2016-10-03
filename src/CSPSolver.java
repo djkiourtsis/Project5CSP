@@ -165,7 +165,7 @@ public class CSPSolver {
 
 		BacktrackingSolver bts = null;
 		if(algorithmToRun==2){
-		    bts = new BacktrackingSolver(bags, items, constraints);
+		    bts = new BackTrackingWithHeuristic(bags, items, constraints);
 		}
 		else if(algorithmToRun==3){
 		    bts = new ForwardCheckingSolver(bags, items, constraints);
