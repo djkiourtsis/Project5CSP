@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CSPSolver {
-
+    static int bagMaxCapacity;
+    
 	public static void main(String[] args) throws IOException {
 		long startTime = System.currentTimeMillis();
+		bagMaxCapacity=0;
 		ArrayList<Bag> bags = new ArrayList<Bag>();
 		ArrayList<Item> items = new ArrayList<Item>();
 		ArrayList<Constraint> constraints = new ArrayList<Constraint>();
@@ -33,6 +35,7 @@ public class CSPSolver {
 		while(!temp.startsWith("#")){
 			String[] temp2 = temp.split("\\s+");
 			BagCapacityConstraint tempBCC = new BagCapacityConstraint(null, null, Integer.valueOf(temp2[0]), Integer.valueOf(temp2[1]));
+			bagMaxCapacity = Integer.valueOf(temp2[1]);
 			constraints.add(tempBCC);
 			temp = input.nextLine();
 		}
@@ -178,14 +181,18 @@ public class CSPSolver {
 			for(int j = 0; j < bags.get(i).getItems().size(); j++){
 				iWeight += bags.get(i).getItems().get(j).getWeight();
 			}
-			int wCap = bags.get(i).getCapacity() - iWeight;
 			System.out.print(bags.get(i).getName());
 			for(int k = 0; k < bags.get(i).getItems().size(); k++){
 				System.out.print(" " + bags.get(i).getItems().get(k).getName());
 			}
 			System.out.format("\nnumber of items: %d\n", bags.get(i).getItems().size());
 			System.out.format("total weight: %d/%d\n", iWeight, bags.get(i).getCapacity());
-			System.out.format("wasted capacity: %d\n", wCap);
+			if(bagMaxCapacity > 0){
+	            System.out.format("wasted capacity: %d\n", bagMaxCapacity-bags.get(i).getItems().size());
+			}
+			else{
+	            System.out.format("wasted capacity: %d\n", 0);
+			}
 
 		}
 	}
