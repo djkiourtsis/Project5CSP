@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class CSPSolver {
 
 	public static void main(String[] args) throws IOException {
+		long startTime = System.currentTimeMillis();
 		ArrayList<Bag> bags = new ArrayList<Bag>();
 		ArrayList<Item> items = new ArrayList<Item>();
 		ArrayList<Constraint> constraints = new ArrayList<Constraint>();
@@ -159,12 +160,14 @@ public class CSPSolver {
 		for(int i = 0; i < constraints.size(); i++){
             //System.out.println(constraints.get(i));
         }
-		
 		BacktrackingSolver bts = null;
 		bts = new BacktrackingSolver(bags, items, constraints);
-		bts = new BackTrackingWithHeuristic(bags, items, constraints);
-		System.out.println(bts.findSolution());
+		//bts = new BackTrackingWithHeuristic(bags, items, constraints);
+		System.out.println("Solution possible:"+ " " + bts.findSolution());
 		writeOutPut(bags);
+		long endTime = System.currentTimeMillis();
+		long timeSpent = endTime - startTime;
+		System.out.format("\n%d milliseconds",timeSpent);
 	}
 
 	public static void writeOutPut(ArrayList<Bag> bags){
