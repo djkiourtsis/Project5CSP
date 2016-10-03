@@ -164,8 +164,9 @@ public class CSPSolver {
             //System.out.println(constraints.get(i));
         }
 		BacktrackingSolver bts = null;
-		bts = new BacktrackingSolver(bags, items, constraints);
+		//bts = new BacktrackingSolver(bags, items, constraints);
 		//bts = new BackTrackingWithHeuristic(bags, items, constraints);
+		bts = new ForwardCheckingSolver(bags, items, constraints);
 		startTime = System.currentTimeMillis();
 		System.out.println("Solution possible:"+ " " + bts.findSolution());
 		long endTime = System.currentTimeMillis();
