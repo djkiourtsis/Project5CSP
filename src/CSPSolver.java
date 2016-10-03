@@ -160,7 +160,9 @@ public class CSPSolver {
             //System.out.println(constraints.get(i));
         }
 		
-		BacktrackingSolver bts = new BacktrackingSolver(bags, items, constraints);
+		BacktrackingSolver bts = null;
+		bts = new BacktrackingSolver(bags, items, constraints);
+		bts = new BackTrackingWithHeuristic(bags, items, constraints);
 		System.out.println(bts.findSolution());
 		writeOutPut(bags);
 	}
@@ -178,7 +180,6 @@ public class CSPSolver {
 				System.out.print(" " + bags.get(i).getItems().get(k).getName());
 			}
 			System.out.format("\nnumber of items: %d\n", bags.get(i).getItems().size());
-			System.out.format("total weight: %d\n", bags.get(i).getItems().size());
 			System.out.format("total weight: %d/%d\n", iWeight, bags.get(i).getCapacity());
 			System.out.format("wasted capacity: %d\n", wCap);
 
