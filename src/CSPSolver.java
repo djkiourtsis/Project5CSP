@@ -7,7 +7,6 @@ public class CSPSolver {
     static int bagMaxCapacity;
     
 	public static void main(String[] args) throws IOException {
-		long startTime = System.currentTimeMillis();
 		bagMaxCapacity=0;
 		int algorithmToRun = 0;
 		ArrayList<Bag> bags = new ArrayList<Bag>();
@@ -173,7 +172,7 @@ public class CSPSolver {
 		else{
 		    bts = new BacktrackingSolver(bags, items, constraints);
 		}
-		startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 		System.out.println("Solution possible:"+ " " + bts.findSolution());
 		long endTime = System.currentTimeMillis();
 		writeOutPut(bags);
