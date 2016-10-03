@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class BinaryNotEqualsConstraint extends Constraint {
-
+//Contains the common satisfiability functions.
     public BinaryNotEqualsConstraint(ArrayList<Item> items, ArrayList<Bag> bags) {
         super(items, bags);
     }

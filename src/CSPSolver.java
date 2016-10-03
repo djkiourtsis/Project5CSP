@@ -7,6 +7,11 @@ public class CSPSolver {
     static int bagMaxCapacity;
     
 	public static void main(String[] args) throws IOException {
+		/**
+		*The following code block reads the input file and goes through eight
+		*while loops to create the bags, items, and constraints and adds them 
+		*to their respective arraylists.
+		**/ 
 		bagMaxCapacity=0;
 		int algorithmToRun = 0;
 		ArrayList<Bag> bags = new ArrayList<Bag>();
@@ -172,10 +177,10 @@ public class CSPSolver {
 		else{
 		    bts = new BacktrackingSolver(bags, items, constraints);
 		}
-		long startTime = System.currentTimeMillis();
-		System.out.println("Solution possible:"+ " " + bts.findSolution());
+		long startTime = System.currentTimeMillis();//Calculates time
+		System.out.println("Solution possible:"+ " " + bts.findSolution());//Solves CSP
 		long endTime = System.currentTimeMillis();
-		writeOutPut(bags);
+		writeOutPut(bags);//Prints solution
 		long timeSpent = endTime - startTime;
 		System.out.format("\n%d milliseconds",timeSpent);
 	}

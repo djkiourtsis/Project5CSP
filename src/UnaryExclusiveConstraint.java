@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class UnaryExclusiveConstraint extends Constraint {
-
+//Contains the common constraint functions
     public UnaryExclusiveConstraint(ArrayList<Item> items, ArrayList<Bag> bags) {
         super(items, bags);
     }

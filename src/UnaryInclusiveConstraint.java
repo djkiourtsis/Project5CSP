@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class UnaryInclusiveConstraint extends Constraint {
-
+//Contains the common constraint files.
     public UnaryInclusiveConstraint(ArrayList<Item> items, ArrayList<Bag> bags) {
         super(items, bags);
     }
