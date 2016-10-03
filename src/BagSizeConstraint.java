@@ -5,6 +5,8 @@ public class BagSizeConstraint extends Constraint {
 
     public BagSizeConstraint(ArrayList<Item> items, ArrayList<Bag> bags) {
         super(items, bags);
+        this.items = new ArrayList<Item>();
+        this.bags = new ArrayList<Bag>();
     }
 
     @Override

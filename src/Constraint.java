@@ -8,6 +8,12 @@ public abstract class Constraint {
     public Constraint(ArrayList<Item> items, ArrayList<Bag> bags){
         this.items = items;
         this.bags = bags;
+        if(items == null){
+            this.items = new ArrayList<Item>();
+        }
+        if(bags == null){
+            this.bags = new ArrayList<Bag>();
+        }
     }
 
     public ArrayList<Item> getItems() {
