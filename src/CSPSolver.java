@@ -173,7 +173,6 @@ public class CSPSolver {
 		else{
 		    bts = new BacktrackingSolver(bags, items, constraints);
 		}
-		bts = new ForwardCheckingSolver(bags, items, constraints);
 		startTime = System.currentTimeMillis();
 		System.out.println("Solution possible:"+ " " + bts.findSolution());
 		long endTime = System.currentTimeMillis();
